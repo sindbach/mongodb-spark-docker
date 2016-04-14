@@ -1,0 +1,22 @@
+version: "2"
+
+services:
+  spark:
+    build: ./spark/.
+    hostname: spark
+    links:
+      - mongodb:mongodb
+    networks:
+      - connector
+  mongodb:
+    build: ./mongodb/.
+    image: mongodb
+    expose:
+      - 27017
+    ports:
+      - 27017:27017
+    networks: 
+      - connector
+
+networks:
+  connector:
