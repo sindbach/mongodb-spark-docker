@@ -1,4 +1,4 @@
-# mongodb-spark
+# Docker for MongoDB and Apache Spark. 
 
 An example of docker-compose to set up a single [Apache Spark](http://spark.apache.org/) node connecting to [MongoDB](https://www.mongodb.com/) via [MongoDB Connector for Hadoop](https://docs.mongodb.org/ecosystem/tools/hadoop/)
 
