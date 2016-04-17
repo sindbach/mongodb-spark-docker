@@ -9,5 +9,8 @@ mongoConfig.set("mongo.input.query", "{'foo':{$in:[1,2]}}")
 mongoConfig.set("mongo.input.sort", "{_id:-1}")
 
 val documents = sc.newAPIHadoopRDD(mongoConfig, classOf[MongoInputFormat], classOf[Object], classOf[BSONObject])
+
+// print documents
 documents.foreach(println)
+// print count of documents
 documents.count()
