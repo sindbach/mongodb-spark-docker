@@ -2,6 +2,7 @@ FROM ubuntu:14.04
 
 RUN apt-get update -y && apt-get install -y \
 openjdk-7-jre-headless \
+nano \
 wget && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/*
@@ -29,7 +30,10 @@ RUN wget -O mongo-hadoop-core-${MONGO_HADOOP_VERSION}.jar http://search.maven.or
 # get mongo java driver
 RUN wget http://central.maven.org/maven2/org/mongodb/mongo-java-driver/3.2.2/mongo-java-driver-${MONGO_JAVA_VERSION}.jar
 
-# add readme file to start-up
-COPY readme.txt /home/ubuntu/readme.txt
-COPY find_documents.scala /home/ubuntu/find_documents.scala
+RUN ${HOME}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}/sbin/start-master.sh
 
+COPY files/times.json /home/ubuntu/times.json
+
+# add readme file to start-up
+COPY files/readme.txt /home/ubuntu/readme.txt
+COPY files/reduceByKey.scala /home/ubuntu/reduceByKey.scala
