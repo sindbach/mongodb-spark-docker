@@ -31,5 +31,5 @@ RUN wget http://central.maven.org/maven2/org/mongodb/mongo-java-driver/3.2.2/mon
 
 # add readme file to start-up
 COPY readme.txt /home/ubuntu/readme.txt
-
+COPY find_documents.scala /home/ubuntu/find_documents.scala
 

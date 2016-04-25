@@ -4,7 +4,7 @@ An example of docker-compose to set up a single [Apache Spark](http://spark.apac
 
 ### Starting up 
 
-You can start by running commang : 
+You can start by running command : 
 
 ```
 docker-compose run spark bash
