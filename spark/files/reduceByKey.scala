@@ -26,6 +26,8 @@ mongoConfig.set("mongo.input.query", "{'myid':{$in:[1,2,3,4,5]}}")
 mongoConfig.set("mongo.input.sort", "{timestamp:-1}")
 
 val documents = sc.newAPIHadoopRDD(mongoConfig, classOf[MongoInputFormat], classOf[Object], classOf[BSONObject])
+// print out inputs
+documents.foreach(println)
 
 val outputRDD = documents.map(
             (tuple)=>((tuple._2.get("myid")), (tuple._2.get("timestamp")))
@@ -37,13 +39,12 @@ val outputRDD = documents.map(
                   }
         )
 
+// print out output
 outputRDD.foreach(println)
 
+// save result to MongoDB
 val outputConfig = new Configuration()
 outputConfig.set("mongo.output.uri", "mongodb://mongodb:27017/spark.output")
-
-// write out result
 outputRDD.saveAsNewAPIHadoopFile("file:///x", classOf[Any], classOf[Any], classOf[com.mongodb.hadoop.MongoOutputFormat[Any, Any]], outputConfig)
-
 
 System.exit(0);
