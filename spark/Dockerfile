@@ -25,7 +25,8 @@ tar xvf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 RUN rm -fv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
 # get mongo-hadoop 
-RUN wget -O mongo-hadoop-core-${MONGO_HADOOP_VERSION}.jar http://search.maven.org/remotecontent?filepath=org/mongodb/mongo-hadoop/mongo-hadoop-core/${MONGO_HADOOP_VERSION}/mongo-hadoop-core-${MONGO_HADOOP_VERSION}.jar
+RUN wget -O mongo-hadoop-spark-${MONGO_HADOOP_VERSION}.jar http://search.maven.org/remotecontent?filepath=org/mongodb/mongo-hadoop/mongo-hadoop-spark/${MONGO_HADOOP_VERSION}/mongo-hadoop-spark-${MONGO_HADOOP_VERSION}.jar
+
 
 # get mongo java driver
 RUN wget http://central.maven.org/maven2/org/mongodb/mongo-java-driver/3.2.2/mongo-java-driver-${MONGO_JAVA_VERSION}.jar
