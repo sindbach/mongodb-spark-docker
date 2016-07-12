@@ -1,6 +1,8 @@
 # Docker for MongoDB and Apache Spark. 
 
-An example of docker-compose to set up a single [Apache Spark](http://spark.apache.org/) node connecting to [MongoDB](https://www.mongodb.com/) via [MongoDB Connector for Hadoop](https://docs.mongodb.org/ecosystem/tools/hadoop/)
+An example of docker-compose to set up a single [Apache Spark](http://spark.apache.org/) node connecting to [MongoDB](https://www.mongodb.com/) via * [MongoDB Spark Connector](https://github.com/mongodb/mongo-spark)
+
+** For demo purposes only **
 
 ### Starting up 
 
@@ -14,14 +16,31 @@ Which would run the spark node and the mongodb node, and provides you with bash 
 
 From the spark instance, you could reach the MongoDB instance using `mongodb` hostname. 
 
-You can find a small dataset example in `/home/ubuntu/times.json` which you could load into the mongodb instance.
+You can find a small dataset example in `/home/ubuntu/times.json` which you can load using [initDocuments.scala](spark/files/initDocuments.scala) :
 
-As an example, please take a look at `reduceByKey.scala` to query from mongodb, run a simple aggregation, and finally write out back to mongodb.
+```
+${HOME}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}/bin/spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:27017/spark.times" --conf "spark.mongodb.output.uri=mongodb://mongodb/spark.output" --packages org.mongodb.spark:mongo-spark-connector_2.10:1.0.0 -i ./initDocuments.scala
+```
+
+
+For examples, please see [reduceByKey.scala](spark/files/reduceByKey.scala) to query from mongodb, run a simple aggregation, and finally write output back to mongodb. This file will also be available inside of the spark container in `/home/ubuntu/reduceByKey.scala`
+
+Run the `spark shell` by executing: 
+
+```sh
+${HOME}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}/bin/spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:27017/spark.times" --conf "spark.mongodb.output.uri=mongodb://mongodb/spark.output" --packages org.mongodb.spark:mongo-spark-connector_2.10:1.0.0
+```
+
+You can also append `-i <file.scala>` to execute a scala file via the spark shell. 
 
 
 ### More Information. 
 
 See related article:
+
+* [MongoDB Spark Connector](https://docs.mongodb.com/spark-connector/)
+
+* [MongoDB Course M233: Getting Started with Spark and MongoDB](https://university.mongodb.com/courses/M233/about)
 
 * [MongoDB Hadoop use cases ](https://docs.mongodb.org/ecosystem/use-cases/hadoop/)
 
@@ -29,4 +48,3 @@ See related article:
 
 * [MongoDB Radio: Hadoop connector with Luke Lovett](https://soundcloud.com/mongodb/hadoop-connector-with-luke-lovett)
 
-* [In development: MongoDB Spark Connector](https://github.com/mongodb/mongo-spark)
