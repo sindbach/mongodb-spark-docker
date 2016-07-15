@@ -13,9 +13,11 @@ ENV HOME /home/ubuntu
 ENV SPARK_VERSION 1.6.2
 ENV HADOOP_VERSION 2.6
 ENV MONGO_SPARK_VERSION 1.0.0
-ENV SCALA_VERSION 2.11
+ENV SCALA_VERSION 2.10
 
 WORKDIR ${HOME}
+
+ENV ${HOME}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}
 
 COPY files/times.json /home/ubuntu/times.json
 COPY files/readme.txt /home/ubuntu/readme.txt
@@ -31,5 +33,3 @@ tar xvf spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
 RUN rm -fv spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}.tgz
 
-# Run single node of spark
-RUN ${HOME}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}/sbin/start-master.sh
