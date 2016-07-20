@@ -23,7 +23,7 @@ ${SPARK_HOME}/bin/spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:
 ```
 
 
-For examples, please see [reduceByKey.scala](spark/files/reduceByKey.scala) to query from mongodb, run a simple aggregation, and finally write output back to mongodb. This file will also be available inside of the spark container in `/home/ubuntu/reduceByKey.scala`
+For example, please see [reduceByKey.scala](spark/files/reduceByKey.scala) to query from mongodb, run a simple aggregation, and finally write output back to mongodb. This file will also be available inside of the spark container in `/home/ubuntu/reduceByKey.scala`
 
 Run the `spark shell` by executing: 
 
@@ -45,6 +45,4 @@ See related article:
 * [MongoDB Hadoop use cases ](https://docs.mongodb.org/ecosystem/use-cases/hadoop/)
 
 * [MongoDB Blog: aggregating intervals of stock prices](https://www.mongodb.com/blog/post/using-mongodb-hadoop-spark-part-1-introduction-setup)
-
-* [MongoDB Radio: Hadoop connector with Luke Lovett](https://soundcloud.com/mongodb/hadoop-connector-with-luke-lovett)
 
