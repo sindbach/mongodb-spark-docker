@@ -17,11 +17,11 @@ ENV SCALA_VERSION 2.10
 
 WORKDIR ${HOME}
 
-ENV ${HOME}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}
+ENV SPARK_HOME ${HOME}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}
 
 COPY files/times.json /home/ubuntu/times.json
 COPY files/readme.txt /home/ubuntu/readme.txt
-COPY files/reduceByKey.scala /home/ubuntu/reduceByKey.scala
+COPY files/examples.scala /home/ubuntu/examples.scala
 COPY files/initDocuments.scala /home/ubuntu/initDocuments.scala
 
 RUN chown -R ubuntu:ubuntu /home/ubuntu/* 

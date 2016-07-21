@@ -23,7 +23,7 @@ ${SPARK_HOME}/bin/spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:
 ```
 
 
-For example, please see [reduceByKey.scala](spark/files/reduceByKey.scala) to query from mongodb, run a simple aggregation, and finally write output back to mongodb. This file will also be available inside of the spark container in `/home/ubuntu/reduceByKey.scala`
+For example, please see [examples.scala](spark/files/examples.scala) to query from mongodb, run a simple aggregation, dataframe SQL and finally write output back to mongodb. This file will also be available inside of the spark container in `/home/ubuntu/examples.scala`
 
 Run the `spark shell` by executing: 
 
@@ -31,8 +31,11 @@ Run the `spark shell` by executing:
 ${SPARK_HOME}/bin/spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:27017/spark.times" --conf "spark.mongodb.output.uri=mongodb://mongodb/spark.output" --packages org.mongodb.spark:mongo-spark-connector_${SCALA_VERSION}:${MONGO_SPARK_VERSION}
 ```
 
-You can also append `-i <file.scala>` to execute a scala file via the spark shell. 
+You can also append `-i <file.scala>` to execute a scala file via the spark shell. For example: 
 
+```sh
+${SPARK_HOME}/bin/spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:27017/spark.times" --conf "spark.mongodb.output.uri=mongodb://mongodb/spark.output" --packages org.mongodb.spark:mongo-spark-connector_${SCALA_VERSION}:${MONGO_SPARK_VERSION} -i ./examples.scala 
+```
 
 ### More Information. 
 
