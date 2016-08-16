@@ -36,7 +36,6 @@ val outputRDD = rdd.map(
 println("Spark RDD processing result: ")
 outputRDD.foreach(println)
 
-
 /* Similar aggregation as above, but utilising MongoDB aggregation pipeline */
 val aggRdd = rdd.withPipeline(Seq(
                 Document.parse("{$sort:{timestamp:1}}"), 
@@ -57,8 +56,10 @@ println("RDD is written to MongoDB")
 /* DataFrames examples */
 val sqlContext = SQLContext.getOrCreate(sc)
 val df = MongoSpark.load(sqlContext)
+
 // Print schema 
 df.printSchema()
+
 // Filter by Integer and by String
 df.filter(df("myid") < 2).show()
 df.filter(df("doc") === "V ").show()
@@ -67,8 +68,12 @@ df.filter(df("doc") === "V ").show()
 df.registerTempTable("temporary")
 val sqlResult = sqlContext.sql("SELECT myid, doc, timestamp FROM temporary WHERE myid > 6 AND doc='V '")
 sqlResult.show()
+
 // Save out the filtered DataFrame result
 MongoSpark.save(sqlResult.write.option("collection", "DF_times").mode("overwrite"))
+// Alternatively you could also specify uri 
+// MongoSpark.save(sqlResult.write.option("uri", "mongodb://mongodb:27017/spark.DF_times").mode("overwrite"))
+
 // Read it back in 
 MongoSpark.load(sqlContext, ReadConfig(Map("collection" -> "DF_times"), Some(ReadConfig(sqlContext)))).show()
 
