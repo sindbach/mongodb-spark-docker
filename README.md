@@ -1,8 +1,6 @@
-# Docker for MongoDB and Apache Spark (Scala).
+# Docker for MongoDB and Apache Spark. 
 
 An example of docker-compose to set up a single [Apache Spark](http://spark.apache.org/) node connecting to [MongoDB](https://www.mongodb.com/) via [MongoDB Spark Connector](https://github.com/mongodb/mongo-spark)
-
-For the Python equivalent example see [mongodb-pyspark-docker](https://github.com/sindbach/mongodb-pyspark-docker).
 
 ** For demo purposes only **
 
@@ -21,7 +19,7 @@ From the spark instance, you could reach the MongoDB instance using `mongodb` ho
 You can find a small dataset example in `/home/ubuntu/times.json` which you can load using [initDocuments.scala](spark/files/initDocuments.scala) :
 
 ```
-${SPARK_HOME}/bin/spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:27017/spark.times" --conf "spark.mongodb.output.uri=mongodb://mongodb/spark.output" --packages org.mongodb.spark:mongo-spark-connector_${SCALA_VERSION}:${MONGO_SPARK_VERSION} -i ./initDocuments.scala
+spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:27017/spark.times" --conf "spark.mongodb.output.uri=mongodb://mongodb/spark.output" --packages org.mongodb.spark:mongo-spark-connector_${SCALA_VERSION}:${MONGO_SPARK_VERSION} -i ./initDocuments.scala
 ```
 
 
@@ -30,13 +28,13 @@ For example, please see [examples.scala](spark/files/examples.scala) to query fr
 Run the `spark shell` by executing: 
 
 ```sh
-${SPARK_HOME}/bin/spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:27017/spark.times" --conf "spark.mongodb.output.uri=mongodb://mongodb/spark.output" --packages org.mongodb.spark:mongo-spark-connector_${SCALA_VERSION}:${MONGO_SPARK_VERSION}
+spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:27017/spark.times" --conf "spark.mongodb.output.uri=mongodb://mongodb/spark.output" --packages org.mongodb.spark:mongo-spark-connector_${SCALA_VERSION}:${MONGO_SPARK_VERSION}
 ```
 
 You can also append `-i <file.scala>` to execute a scala file via the spark shell. For example: 
 
 ```sh
-${SPARK_HOME}/bin/spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:27017/spark.times" --conf "spark.mongodb.output.uri=mongodb://mongodb/spark.output" --packages org.mongodb.spark:mongo-spark-connector_${SCALA_VERSION}:${MONGO_SPARK_VERSION} -i ./examples.scala 
+spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:27017/spark.times" --conf "spark.mongodb.output.uri=mongodb://mongodb/spark.output" --packages org.mongodb.spark:mongo-spark-connector_${SCALA_VERSION}:${MONGO_SPARK_VERSION} -i ./examples.scala 
 ```
 
 ### More Information. 
