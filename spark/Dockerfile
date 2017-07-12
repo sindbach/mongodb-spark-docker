@@ -1,7 +1,7 @@
-FROM ubuntu:14.04
+FROM ubuntu:16.04
 
 RUN apt-get update -y && apt-get install -y \
-openjdk-7-jre-headless \
+default-jdk \
 nano \
 wget && \
 apt-get clean && \
@@ -10,9 +10,9 @@ rm -rf /var/lib/apt/lists/*
 RUN useradd --create-home --shell /bin/bash ubuntu
 
 ENV HOME /home/ubuntu
-ENV SPARK_VERSION 2.0.2
+ENV SPARK_VERSION 2.1.1
 ENV HADOOP_VERSION 2.6
-ENV MONGO_SPARK_VERSION 2.0.0-rc0
+ENV MONGO_SPARK_VERSION 2.0.0
 ENV SCALA_VERSION 2.11
 
 WORKDIR ${HOME}
