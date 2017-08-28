@@ -49,3 +49,10 @@ See related article:
 
 * [MongoDB Blog: aggregating intervals of stock prices](https://www.mongodb.com/blog/post/using-mongodb-hadoop-spark-part-1-introduction-setup)
 
+### Related Repositories
+
+* [MongoDB PySpark docker](https://github.com/sindbach/mongodb-pyspark-docker)
+* [MongoDB Java Spark docker](https://github.com/sindbach/mongodb-javaspark-docker)
+
+
+
