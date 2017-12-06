@@ -21,7 +21,7 @@ ENV SPARK_HOME ${HOME}/spark-${SPARK_VERSION}-bin-hadoop${HADOOP_VERSION}
 ENV PATH ${PATH}:${SPARK_HOME}/bin
 
 COPY files/times.json /home/ubuntu/times.json
-COPY files/readme.txt /home/ubuntu/readme.txt
+COPY files/README.md /home/ubuntu/README.md
 COPY files/examples.scala /home/ubuntu/examples.scala
 COPY files/initDocuments.scala /home/ubuntu/initDocuments.scala
 
