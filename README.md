@@ -37,6 +37,20 @@ You can also append `-i <file.scala>` to execute a scala file via the spark shel
 spark-shell --conf "spark.mongodb.input.uri=mongodb://mongodb:27017/spark.times" --conf "spark.mongodb.output.uri=mongodb://mongodb/spark.output" --packages org.mongodb.spark:mongo-spark-connector_${SCALA_VERSION}:${MONGO_SPARK_VERSION} -i ./examples.scala 
 ```
 
+#### Additional Comments
+
+For code block in [examples.scalaL14-25](spark/files/examples.scala#L14-L25), this is an example of grouping.
+For example if you have 4 documents of :
+
+```js
+{ "doc": "A", "timestamp" : ISODate("2016-02-15T00:43:04.686Z"), "myid" : 1 }
+{ "doc": "B", "timestamp" : ISODate("2016-02-15T00:43:06.310Z"), "myid" : 2 }
+{ "doc": "C", "timestamp" : ISODate("2016-01-03T00:43:07.534Z"), "myid" : 1 }
+{ "doc": "D", "timestamp" : ISODate("2016-01-03T00:43:09.214Z"), "myid" : 2 }
+```
+
+The code block will group by `myid` and sort by latest timestamp, which would return only two documents, `doc:A` and `doc:B`. The grouping removes duplicate of `myid`s by returning only documents with the latest timestamp.
+
 ### More Information. 
 
 See related article:

@@ -11,18 +11,6 @@ println("Input Count: " + rdd.count)
 println("Input documents: ")
 rdd.foreach(println)
 
-/*
- PROCESSING  
- For example, if you have 4 documents of :
-
-{ "doc": "A", "timestamp" : ISODate("2016-02-15T00:43:04.686Z"), "myid" : 1 }
-{ "doc": "B", "timestamp" : ISODate("2016-02-15T00:43:06.310Z"), "myid" : 2 }
-{ "doc": "C", "timestamp" : ISODate("2016-01-03T00:43:07.534Z"), "myid" : 1 }
-{ "doc": "D", "timestamp" : ISODate("2016-01-03T00:43:09.214Z"), "myid" : 2 }
-
-Group by `myid` sort latest timestamp, would return only two documents, doc:A and doc:B. 
-Removing duplicates of myid’s by returning only documents with the latest timestamp.
-*/
 import org.joda.time.DateTime
 val outputRDD = rdd.map(
             (tuple)=>((tuple.get("myid")), (tuple.get("timestamp")))
