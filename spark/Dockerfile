@@ -1,8 +1,10 @@
-FROM ubuntu:16.04
+FROM ubuntu:18.04
 
 RUN apt-get update -y && apt-get install -y \
 default-jdk \
 nano \
+sudo \
+openjdk-8-jdk \
 wget && \
 apt-get clean && \
 rm -rf /var/lib/apt/lists/*
@@ -10,9 +12,10 @@ rm -rf /var/lib/apt/lists/*
 RUN useradd --create-home --shell /bin/bash ubuntu
 
 ENV HOME /home/ubuntu
-ENV SPARK_VERSION 2.2.0
+ENV JAVA_HOME /usr/lib/jvm/java-8-openjdk-amd64
+ENV SPARK_VERSION 2.4.3
 ENV HADOOP_VERSION 2.6
-ENV MONGO_SPARK_VERSION 2.2.0
+ENV MONGO_SPARK_VERSION 2.4.1
 ENV SCALA_VERSION 2.11
 
 WORKDIR ${HOME}
